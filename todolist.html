@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Your To-Do App</title>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="welcome-container">
+        <a href="#" onclick="goHome()">
+            <i class='bx bx-log-out'></i>
+        </a>
+        <script> function goHome() {
+            window.location.href = "index.html"; 
+        }
+        </script>
+        <h2>Welcome, JESSICA!</h2>
+        <p>Work and manage your task with Todo app</p>
+    </div>
+    <h4>Catergories</h4>
+    <div class="categories-container">
+    <div class="category" onclick="openCategory('work')">
+        <span class="icon">🏢</span>
+        <span class="name">WORK</span>
+    </div>
+
+    <div class="category" onclick="openCategory('personal')">
+        <span class="icon">🏠</span>
+        <span class="name">PERSONAL</span>
+    </div>
+
+    <div class="category" onclick="openCategory('health')">
+        <span class="icon">🏋️‍♂️</span>
+        <span class="name">HEALTH</span>
+    </div>
+
+    <div class="category" onclick="openCategory('family')">
+        <span class="icon">👨‍👩‍👧</span>
+        <span class="name">FAMILY</span>
+    </div>
+    </div>
+    <div class="container-box">
+        <div class="add-task-section">
+            <a href="#" onclick="toggleTaskForm()">
+                <i class='bx bx-plus'> Add your Task here</i>
+            </a>
+            <script>
+            function toggleTaskForm() {
+                var taskForm = document.getElementById('taskForm');
+                taskForm.classList.toggle('hidden');
+            }
+            </script>
+            <div id="taskForm" class="hidden">
+                <input type="text" id="taskInput" placeholder="Enter task">
+                <select id="categoryDropdown">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="health">Health</option>
+                    <option value="family">Family</option>
+                </select>
+                <button onclick="saveTask()">Save</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script src="todolist.js"></script>
+</body>
+</html>

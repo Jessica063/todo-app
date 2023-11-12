@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Work list</title>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+       body {
+           
+           background-image: url(w3.png);
+           background-size: cover;
+           background-position: center;
+           height: 100vh; 
+           background-attachment:fixed;
+           overflow: hidden;
+       }
+       body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.3); 
+    }
+        .category-page {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+    
+        }
+
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.95); 
+            padding: 10px;
+            border-radius: 6px; 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+        }
+        p{
+            font-size: 17px;
+        }
+        .complete {
+            margin-right: 10px;
+        }
+
+        .edit,
+        .delete {
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        @media (max-width: 768px) {
+            .category-page {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="category-page">
+        <a href="#" onclick="goBack()">
+            <i class='bx bx-arrow-back'></i>
+        </a>
+        <h1>Health Category <span class="icon">🏋️‍♂️</span></h1>
+        <p>"A healthy outside starts from the inside. Make wellness a priority on today to-do list."</p>
+        <br>
+
+        <ul id="taskList"></ul>
+
+        <script>
+            function goBack() {
+                window.location.href = "todolist.html";
+            }
+
+            function displayTasks() {
+                var tasks = JSON.parse(localStorage.getItem('health')) || [];
+                var taskList = document.getElementById('taskList');
+
+                taskList.innerHTML = '';
+
+                tasks.forEach(function (task, index) {
+                    var li = document.createElement('li');
+                    li.innerHTML = `
+                        <input type="checkbox" id="task-${index}" class="complete">
+                        <span>${task}</span>
+                        <i class='bx bx-edit edit' onclick="editTask(${index})" title="Edit"></i>
+                        <i class='bx bx-trash delete' onclick="deleteTask(${index})" title="Delete"></i>
+                    `;
+                    taskList.appendChild(li);
+                });
+            }
+
+            function editTask(index) {
+                var tasks = JSON.parse(localStorage.getItem('health')) || [];
+                var newTaskText = prompt('Edit task:', tasks[index]);
+
+                if (newTaskText !== null) {
+                    tasks[index] = newTaskText;
+                    localStorage.setItem('health', JSON.stringify(tasks));
+                    displayTasks();
+                }
+            }
+
+            function deleteTask(index) {
+                var tasks = JSON.parse(localStorage.getItem('health')) || [];
+                var confirmDelete = confirm(`Are you sure you want to delete "${tasks[index]}"?`);
+
+                if (confirmDelete) {
+                    tasks.splice(index, 1);
+                    localStorage.setItem('health', JSON.stringify(tasks));
+                    displayTasks();
+                }
+            }
+          
+            window.onload = function () {
+                displayTasks();
+            };
+        </script>
+    </div>
+</body>
+</html>

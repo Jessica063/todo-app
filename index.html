@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>To-Do List App</title>
+</head>
+
+<body>
+    <div class="welcome">
+        <h1>To-Do List App</h1>
+        <p>Organize your tasks and boost productivity!</p>
+
+        <div class="features">
+            <h3>Features:</h3>
+            <ul>
+                <li>Add tasks to your to-do list</li>
+                <li>Mark tasks as completed</li>
+                <li>Increase your Productivity</li>
+                <li>Manage your time</li>
+            </ul>
+        </div>
+    </div>
+    <div class="login-box">
+        <h3>Login here</h3>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Get started</button>
+    </div>
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username && password) {
+                window.location.href = 'todolist.html';
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+    </script>
+    <style>
+        
+        .login-box {
+            width: 300px;
+            text-align: center;
+            top: 10px;
+            padding: 50px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #fcfafa;
+            border-radius: 4px;
+            background-color: #fff; 
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(175, 76, 172);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+   
+
+    <script src="todolist.js"></script>
+</body>
+
+</html>
+
